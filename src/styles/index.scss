@@ -1,0 +1,8 @@
+@import './variables';
+@import './normalize';
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}

@@ -1,0 +1,28 @@
+.profile-content {
+  width: 510px;
+  margin: 0 auto;
+  &__top {
+    margin-bottom: 97px;
+    &--data {
+      margin-bottom: 60px;
+    }
+  }
+  &__middle {
+    margin-bottom: 60px;
+    & > * {
+      &:last-child {
+        border-bottom: none
+      }
+    }
+    &--passwords {
+      margin-bottom: 162px;
+    }
+  }
+  &__bottom {
+    & > * {
+      &:last-child {
+        border-bottom: none
+      }
+    }
+  }
+}
