@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
-    "start": "vite build && node ./server.js"
+    "start": "vite build && node ./server.js",
+    "build": "vite build"
   },
   "devDependencies": {
     "express": "^4.18.2",
