@@ -1,1 +1,1 @@
-export { default } from './ChangeDataPage'
+export { default } from './ChangeDataPage';

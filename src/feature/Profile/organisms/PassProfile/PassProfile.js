@@ -1,7 +1,7 @@
 import RowData from '../../atoms/RowData';
 import About from '../../molecules/About';
 import Button from '@/common/Button';
-import ProfileContent from '../../templates/ProfileContent'
+import ProfileContent from '../../templates/ProfileContent';
 
 const about = About();
 const fields = [

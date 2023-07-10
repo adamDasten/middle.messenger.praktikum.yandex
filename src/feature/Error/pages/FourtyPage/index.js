@@ -1,1 +1,1 @@
-export { default } from './FourtyPage'
+export { default } from './FourtyPage';
