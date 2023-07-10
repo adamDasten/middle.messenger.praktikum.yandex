@@ -11,12 +11,17 @@ import ActionBtn from './feature/Profile/atoms/ActionBtn/ActionBtn';
 import About from './feature/Profile/molecules/About/About';
 import InfoPage from './feature/Profile/pages/Info';
 import ChangeDataPage from './feature/Profile/pages/ChangeData';
-import ChangePasswordPage from './feature/Profile/pages/ChangePassword/ChangePasswordPage';
+import ChangePasswordPage from './feature/Profile/pages/ChangePassword';
+import ChatPage from './feature/Chat/pages/ChatPage';
+import ChatEmpty from './feature/Chat/pages/ChatEmpty';
+import { routes } from './consts/routes';
 
 // register partials
-Handlebars.registerPartial('button', Button);
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app');
-  app.innerHTML = ChangePasswordPage();
+  const location = window.location.pathname;
+  app.innerHTML = routes[location]
+    ? routes[location]
+    : routes['/fourty'];
 });

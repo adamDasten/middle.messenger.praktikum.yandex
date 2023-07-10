@@ -1,0 +1,27 @@
+@import '@/styles';
+
+.message {
+  font-size: 13px;
+  padding: 11px;
+  position: relative;
+  padding-bottom: 23px;
+  padding-right: 20px;
+  background-color: $background-message-user;
+  max-width: 380px;
+  width: max-content;
+  border-radius: 6px;
+  &--your {
+    background-color: $background-message-your;
+    margin-left: auto;
+  }
+  &-time {
+    font-size: 9px;
+    color: $label-color;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    &--your {
+      color: $main-orange;
+    }
+  }
+}

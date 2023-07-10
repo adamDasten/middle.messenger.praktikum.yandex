@@ -6,8 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  &__backs {
+  &__backs { 
     position: absolute;
     top: 0;
     bottom: 0;
