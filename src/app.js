@@ -4,8 +4,6 @@ import './styles/index.scss';
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app');
   const location = window.location.pathname;
-  const currentRoute = routes[location]
-    ? routes[location]
-    : routes['/fourty'];
+  const currentRoute = routes[location] ?? routes['/fourty'];
   app.innerHTML = currentRoute;
 });
