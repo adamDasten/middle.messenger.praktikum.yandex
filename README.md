@@ -4,15 +4,15 @@
 ---
 ## **Страницы**
 
-- «[Инит логин страница](https://dainty-beijinho-094c01.netlify.app/)»
-- «[Регистрация](https://dainty-beijinho-094c01.netlify.app/registration)»
-- «[500 ошибка](https://dainty-beijinho-094c01.netlify.app/fifty)»
-- «[400 ошибка](https://dainty-beijinho-094c01.netlify.app/fourty)»
+- «[Инит логин страница](https://dainty-beijinho-094c01.netlify.app/){:target="_blank"}»
+- «[Регистрация](https://dainty-beijinho-094c01.netlify.app/registration){:target="_blank"}»
+- «[500 ошибка](https://dainty-beijinho-094c01.netlify.app/fifty){:target="_blank"}»
+- «[400 ошибка](https://dainty-beijinho-094c01.netlify.app/fourty){:target="_blank"}»
 - «[Страница диалогов](https://dainty-beijinho-094c01.netlify.app/chats)»
-- «[Страница диалогов без выбранного](https://dainty-beijinho-094c01.netlify.app/emptys)»
-- «[Данные профиля](https://dainty-beijinho-094c01.netlify.app/info)»
-- «[Данные профиля для изменения](https://dainty-beijinho-094c01.netlify.app/passwords)»
-- «[Данные профиля для изменения пароля](https://dainty-beijinho-094c01.netlify.app/data)»
+- «[Страница диалогов без выбранного](https://dainty-beijinho-094c01.netlify.app/emptys){:target="_blank"}»
+- «[Данные профиля](https://dainty-beijinho-094c01.netlify.app/info){:target="_blank"}»
+- «[Данные профиля для изменения](https://dainty-beijinho-094c01.netlify.app/passwords){:target="_blank"}»
+- «[Данные профиля для изменения пароля](https://dainty-beijinho-094c01.netlify.app/data){:target="_blank"}»
 
 ---
 
