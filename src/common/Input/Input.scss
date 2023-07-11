@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.wrapper-input {
+  &__label {
+    font-size: 9px;
+    display: block;
+    color: $label-color;
+    margin-bottom: 8px;
+    @media (min-width: 1000px) {
+      font-size: 10px;
+    }
+  }
+  &__int {
+    display: block;
+    font-size: 13px;
+    width: 100%;    
+    padding-bottom: 7px;
+    border: none;
+    border-bottom: 1px solid $main-orange;
+    outline: none;
+    @media (min-width: 1000px) {
+      font-size: 14px;
+    }
+  }
+}

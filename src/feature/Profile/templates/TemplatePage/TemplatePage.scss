@@ -1,0 +1,35 @@
+@import '@/styles/variables';
+
+.template-page {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__backs { 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 64px;
+    background-color: #FBFBFB;
+    border-right: 1px solid $main-border-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      text-decoration: none;
+      display: inline-block;
+      background-color: $main-orange;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        display: block;
+      }
+    }
+  }
+}

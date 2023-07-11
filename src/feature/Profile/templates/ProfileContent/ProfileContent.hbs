@@ -1,0 +1,17 @@
+<div class="profile-content">
+  <div class="profile-content__top profile-content__top--{{page}}">
+    {{{ about }}}
+  </div>
+  <form>
+    <div class="profile-content__middle profile-content__middle--{{page}}">
+    {{#each fields}}
+      {{{ this }}}
+    {{/each}}
+    </div>
+    <div class="profile-content__bottom profile-content__bottom--{{page}}">
+      {{#each actions}}
+        {{{ this }}}
+      {{/each}}
+    </div>
+  </form>
+</div>

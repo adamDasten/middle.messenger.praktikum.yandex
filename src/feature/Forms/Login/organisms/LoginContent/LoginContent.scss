@@ -1,0 +1,24 @@
+.login-content {
+  max-width: 340px;
+  margin: auto;
+  padding: 30px;
+  padding-top: 50px;
+  box-shadow: 0 0 6px rgba(0,0,0,.14);
+  border-radius: 12px;
+
+  &__title {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  &__fields {
+    margin-bottom: 160px;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+}

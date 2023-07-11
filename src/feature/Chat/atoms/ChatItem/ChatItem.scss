@@ -1,0 +1,69 @@
+@import '@/styles/variables';
+
+.chat-item {
+  display: flex;
+  padding: 12px 10px;
+  border-top: 1px solid $main-border-color;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba($main-orange, 0.2);
+  }
+  &__img {
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    background-color: $background-user;
+    margin-right: 10px;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    margin-right: 15px;
+    &-naming {
+      display: flex;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    h4 {
+      font-weight: 600;
+      font-size: 13px;
+      margin: 0;
+    }
+    &-message {
+      display: inline-block;
+      color: $label-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -moz-box;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-height: 15px;
+      max-height: 30px;
+    }
+  }
+  &__date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    &-text {
+      font-size: 10px;
+      color: $label-color;
+    }
+    &-notification {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 10px;
+      background-color: $main-orange;
+      color: $main-white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
