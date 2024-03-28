@@ -1,3 +1,7 @@
+## Информация
+Приложение "мессенджер" написано на typescript с помощью шаблонизатора Handlebars, а также препроцессора SCSS.
+
+---
 ## **Дизайн фигмы**
 [Ссылка](https://www.figma.com/file/Ebzpsa6rhFClodNiOI9b9s/Chat_external_link-(Copy)?type=design&node-id=1%3A2&mode=design&t=V4Fu7rWzUtrfxeMH-1)
 
