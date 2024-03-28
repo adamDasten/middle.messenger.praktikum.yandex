@@ -10,7 +10,7 @@ import optionsSvg from "#/static/options.svg";
 import FormDialog from "../../../../components/FormDialog";
 import addFile from "#/static/add_svg.svg";
 import arrowGo from "#/static/arrow_next.svg";
-import DialogInput from "../../../../components/DialogInput/DialogInput";
+import DialogInput from "../../../../components/DialogInput";
 
 const chatItems = [
 	new ChatItem({
