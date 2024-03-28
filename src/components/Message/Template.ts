@@ -1,0 +1,14 @@
+export const Template = `
+  <div class="message {{your}}">
+    <div class="message-text">
+      {{message}}
+    </div>
+    <div class="message-time {{your}}">
+      {{#if your}}
+        <img src={{read}} alt="Прочитано">
+      {{/if}}
+      {{time}}
+    </div>
+  </div>
+
+`;

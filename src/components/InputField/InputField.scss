@@ -1,0 +1,13 @@
+@import "../../styles/variables";
+
+.wrapper-input {
+	&__label {
+		font-size: 9px;
+		display: block;
+		color: $label-color;
+		margin-bottom: 8px;
+		@media (min-width: 1000px) {
+			font-size: 10px;
+		}
+	}
+}

@@ -1,0 +1,7 @@
+/build
+/dist
+**/*.min.js
+/node_modules 
+server.js
+vite.config.js
+vite-plugin-handlebars.precompile.js

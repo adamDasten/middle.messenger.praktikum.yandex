@@ -16,8 +16,8 @@ export default function handlebars() {
       import Handlebars from 'handlebars/runtime';
 
       export default Handlebars.template(${Handlebars.precompile(
-        src,
-      )})
+    src,
+  )})
       `;
 
       return {
