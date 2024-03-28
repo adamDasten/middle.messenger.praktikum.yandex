@@ -2,7 +2,7 @@ export const Template = `
 
 <div class="aside-profile">
   <div class="to-profile-wrapper">
-    <a class="to-profile" href="/profile">
+    <a class="to-profile" href="/data">
       Профиль <img src={{ arrowImg }} alt="Стрелка к профилю">
     </a>
   </div>

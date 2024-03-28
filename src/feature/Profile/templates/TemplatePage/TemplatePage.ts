@@ -11,7 +11,6 @@ interface IProps {
 	form: ProfileForm;
 }
 
-// <div class="template-page">
 export default class TemplatePage extends Block<IProps> {
 	constructor(props: IProps) {
 		super("div", {

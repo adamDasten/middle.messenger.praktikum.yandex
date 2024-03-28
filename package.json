@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
-    "start": "vite build && node ./server.js",
-    "build": "vite build",
+    "start": "npm run prebuild && vite build && node ./server.js",
+    "build": "npm run prebuild && vite build",
     "eslint:fix": "eslint . --fix",
     "prebuild": "tsc --noEmit",
     "eslint": "eslint .",

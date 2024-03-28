@@ -2,8 +2,6 @@ import { Template } from "./Template";
 import "./ActionBtn.scss";
 import Block from "../../core/Block";
 
-// <div class="action-btn-wrapper">
-
 interface IProps {
 	textLink: string;
 	path: string;

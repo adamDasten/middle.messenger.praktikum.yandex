@@ -72,7 +72,7 @@ const fields = [
 		name: "Телефон",
 		input: new ProfileInput({
 			attr: {
-				value: "+7-(909)-967-30-30",
+				value: "+79099673030",
 				name: "phone",
 				type: "tel",
 				disabled: true,
