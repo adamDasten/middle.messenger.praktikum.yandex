@@ -84,11 +84,11 @@ const fields = [
 const actions = [
 	new ActionBtn({
 		textLink: "Изменить данные",
-		path: "/changeInfo",
+		path: "/data",
 	}),
 	new ActionBtn({
 		textLink: "Изменить пароль",
-		path: "/changePass",
+		path: "/passwords",
 	}),
 	new ActionBtn({
 		textLink: "Выйти",
