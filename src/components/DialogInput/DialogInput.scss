@@ -1,0 +1,14 @@
+@import "@/styles/variables";
+
+.dialog-input {
+	width: 100%;
+	outline: none;
+	border: none;
+	border-radius: 30px;
+	padding: 10px 20px;
+	background-color: $main-bg-inputs;
+	font-size: 13px;
+	&::placeholder {
+		color: $label-color;
+	}
+}

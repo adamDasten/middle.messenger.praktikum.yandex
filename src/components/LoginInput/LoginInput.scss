@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+
+.login-input {
+	display: block;
+	font-size: 13px;
+	width: 100%;
+	padding-bottom: 7px;
+	border: none;
+	border-bottom: 1px solid $main-orange;
+	outline: none;
+	@media (min-width: 1000px) {
+		font-size: 14px;
+	}
+}
