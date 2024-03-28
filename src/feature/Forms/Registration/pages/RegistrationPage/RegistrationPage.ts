@@ -9,7 +9,7 @@ import Block from "../../../../../core/Block";
 import { IAuthPage } from "../../../Login/pages/LoginPage/LoginPage";
 import LoginForm from "../../../../../components/AuthForm";
 import InputField from "../../../../../components/InputField";
-import LoginInput from "../../../../../components/LoginInput/LoginInput";
+import LoginInput from "../../../../../components/LoginInput";
 
 const inputs = [
 	new InputField({

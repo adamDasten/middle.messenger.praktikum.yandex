@@ -8,7 +8,7 @@ import Block from "../../../../../core/Block";
 import second from "../../../../../../static/sun_kaktus.svg";
 import LoginForm from "../../../../../components/AuthForm";
 import InputField from "../../../../../components/InputField";
-import LoginInput from "../../../../../components/LoginInput/LoginInput";
+import LoginInput from "../../../../../components/LoginInput";
 
 export interface IAuth {
 	fields: Fields;
