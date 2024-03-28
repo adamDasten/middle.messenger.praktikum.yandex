@@ -6,7 +6,10 @@
     "dev": "vite --open",
     "start": "vite build && node ./server.js",
     "build": "vite build",
-    "eslint": "eslint . --fix"
+    "eslint:fix": "eslint . --fix",
+    "prebuild": "tsc --noEmit",
+    "eslint": "eslint .",
+    "stylelint": "stylelint **/*.scss"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.8",
