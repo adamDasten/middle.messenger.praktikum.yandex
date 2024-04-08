@@ -1,0 +1,14 @@
+@import "@/styles/variables";
+
+.row-data {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid $main-border-color;
+	&__name {
+		flex: 1;
+	}
+	&__value {
+		color: $label-color;
+	}
+}

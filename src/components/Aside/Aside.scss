@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+
+.aside {
+	background-color: #fbfbfb;
+	padding-top: 20px;
+	height: 100vh;
+	width: 310px;
+	border-right: 1px solid $main-border-color;
+	display: flex;
+	flex-direction: column;
+	&-profile {
+		margin-bottom: 23px;
+	}
+	&-search {
+		margin-bottom: 14px;
+
+		&-inner {
+			position: relative;
+			padding: 0 10px;
+			input {
+				display: block;
+				width: 100%;
+				padding: 10px 0;
+				border: none;
+				background-color: $main-bg-inputs;
+				border-radius: 5px;
+				font-size: 13px;
+				text-align: center;
+				outline: none;
+				&:focus + img {
+					display: none;
+				}
+			}
+			img {
+				position: absolute;
+				top: 50%;
+				left: 37%;
+				transform: translateX(-50%) translateY(-48%);
+			}
+		}
+	}
+	&-chat {
+		flex: 1;
+		overflow: auto;
+	}
+}
