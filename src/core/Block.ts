@@ -19,7 +19,7 @@ interface IPropsAndStubs extends IProps {
 	[key: string]: unknown;
 }
 
-export default abstract class Block<T extends object> {
+export default class Block<T extends object = object> {
 	static EVENTS = {
 		INIT: "init",
 		FLOW_CDM: "flow:component-did-mount",
