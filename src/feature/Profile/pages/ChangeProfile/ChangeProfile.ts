@@ -80,13 +80,13 @@ const about = new About({
 
 const profileForm = new ProfileForm({
 	fields,
-	page: "data",
+	page: "changeProfile",
 	actions,
 });
 
 export default new TemplatePage({
 	about,
 	imgSrc: arrowBack,
-	page: "data",
+	page: "changeProfile",
 	form: profileForm,
 });

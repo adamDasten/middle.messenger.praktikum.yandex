@@ -1,9 +1,26 @@
-import { Path, routes } from "./consts/routes";
+import { Path } from "./consts/routes";
+import Router from "./core/Router";
+import EmptyPage from "./feature/Chat/pages/EmptyPage";
+import MessagePage from "./feature/Chat/pages/MessagePage";
+import LoginPage from "./feature/Forms/Login/pages/LoginPage";
+import RegistrationPage from "./feature/Forms/Registration/pages/RegistrationPage";
+import ChangeProfile from "./feature/Profile/pages/ChangeProfile";
+import InfoOrd from "./feature/Profile/pages/InfoOrd";
+import PassProfile from "./feature/Profile/pages/PassProfile";
+import Error505 from "./feature/Error/pages/505";
+import Error404 from "./feature/Error/pages/404";
 import "./styles/index.scss";
-import renderDOM from "./utils/renderPage";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const location = window.location.pathname as Path;
-	const currentRoute = routes[location] ?? routes[Path.FOURTY];
-	renderDOM(currentRoute);
+	Router.use(Path.MAIN, LoginPage)
+		.use(Path.REGISTRATION, RegistrationPage)
+		.use(Path.CHATS, MessagePage)
+		.use(Path.EMPTYS, EmptyPage)
+		.use(Path.PASSWORDS, PassProfile)
+		.use(Path.INFO, InfoOrd)
+		.use(Path.DATA, ChangeProfile)
+		.use(Path.FIFTY, Error505)
+		.use(Path.FOURTY, Error404);
+
+	Router.start();
 });

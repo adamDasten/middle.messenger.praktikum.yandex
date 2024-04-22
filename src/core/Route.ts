@@ -3,13 +3,12 @@ import Block from "./Block";
 
 export class Route {
 	_pathname: string;
-	_blockClass: typeof Block;
-	_block: Block | null;
+	_block: Block;
+	_isFirstRender: boolean = true;
 
-	constructor(pathname: string, view: typeof Block) {
+	constructor(pathname: string, view: Block) {
 		this._pathname = pathname;
-		this._blockClass = view;
-		this._block = null;
+		this._block = view;
 	}
 
 	navigate(pathname: string) {
@@ -30,9 +29,9 @@ export class Route {
 	}
 
 	render() {
-		if (!this._block) {
-			this._block = new this._blockClass();
+		if (this._isFirstRender) {
 			renderDOM(this._block);
+			this._isFirstRender = false;
 			return;
 		}
 

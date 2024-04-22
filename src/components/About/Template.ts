@@ -1,6 +1,7 @@
 export const Template = `
-  <button class='about-btn'>
+  <label for="avatar" class='about-btn'>
     <img src={{ pathImg }} alt="Настройка профиля">
-  </button>
+  </label>
+  <input id="avatar" type="file" accept="image/*" />
   <div class='name'>{{ name }}</div>
 `;

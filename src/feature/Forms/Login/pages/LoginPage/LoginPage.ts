@@ -9,12 +9,15 @@ import second from "../../../../../../static/sun_kaktus.svg";
 import LoginForm from "../../../../../components/AuthForm";
 import InputField from "../../../../../components/InputField";
 import LoginInput from "../../../../../components/LoginInput";
+import Router from "../../../../../core/Router";
+import { Path } from "../../../../../consts/routes";
 
 export interface IAuth {
 	fields: Fields;
 	actionButton: Button;
 	actionHelp: LinkRegistry;
 	title: LoginLabel;
+	eventType: "login" | "register";
 	attr: {
 		class: string;
 	};
@@ -70,6 +73,11 @@ const actionHelp = new LinkRegistry({
 		class: "link-registry",
 		href: "/registration",
 	},
+	events: {
+		click: () => {
+			Router.go(Path.REGISTRATION);
+		},
+	},
 });
 
 const title = new LoginLabel({
@@ -84,6 +92,7 @@ const form = new LoginForm({
 	actionHelp,
 	fields,
 	title,
+	eventType: "login",
 	attr: {
 		class: "main-content",
 	},

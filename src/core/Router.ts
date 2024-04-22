@@ -1,3 +1,5 @@
+import { Path } from "../consts/routes";
+import Store from "../services/Store";
 import Block from "./Block";
 import { Route } from "./Route";
 
@@ -19,7 +21,7 @@ export class Router {
 		Router.__instance = this;
 	}
 
-	use(pathname: string, block: typeof Block) {
+	use(pathname: Path, block: Block) {
 		const route = new Route(pathname, block);
 		this.routes.push(route);
 
@@ -38,8 +40,7 @@ export class Router {
 	_onRoute(pathname: string) {
 		const route = this.getRoute(pathname);
 
-		if (!route) {
-			this.go("/404");
+		if (!route || this.currentRoute === route) {
 			return;
 		}
 
@@ -65,6 +66,29 @@ export class Router {
 	}
 
 	getRoute(pathname: string) {
-		return this.routes.find((route) => route._pathname.match(pathname));
+		const user = Store.getState().user;
+		if (!user && pathname !== Path.REGISTRATION && pathname !== Path.MAIN) {
+			this.go(Path.MAIN);
+			return;
+		}
+
+		if ((pathname === Path.MAIN || pathname === Path.REGISTRATION) && user) {
+			this.go(Path.CHATS);
+
+			return;
+		}
+
+		const findedRoute = this.routes.find((route) =>
+			route._pathname.match(pathname)
+		);
+
+		if (!findedRoute) {
+			this.go(Path.FOURTY);
+			return;
+		}
+
+		return findedRoute;
 	}
 }
+
+export default new Router();

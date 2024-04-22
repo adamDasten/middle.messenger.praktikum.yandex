@@ -1,16 +1,23 @@
 .about {
-  text-align: center;
-  &-btn {
-    margin-bottom: 21px;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    cursor: pointer;
-    img {
-      display: block;
-    }
-  }
-  &-name {
-    font-weight: 600;
-  }
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	input {
+		display: none;
+	}
+	&-btn {
+		margin-bottom: 21px;
+		border: none;
+		background-color: transparent;
+		outline: none;
+		cursor: pointer;
+		img {
+			display: block;
+		}
+	}
+	&-name {
+		font-weight: 600;
+	}
 }

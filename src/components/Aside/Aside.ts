@@ -1,4 +1,6 @@
+import { Path } from "../../consts/routes";
 import Block from "../../core/Block";
+import Router from "../../core/Router";
 import ChatItem from "../ChatItem";
 import "./Aside.scss";
 import { Template } from "./Template";
@@ -16,6 +18,14 @@ export default class Aside extends Block<IProps> {
 			attr: {
 				class: "aside",
 			},
+		});
+
+		// Для ссылки профиля делаем роутинг
+		const link = this.element?.querySelector(".to-profile");
+
+		link?.addEventListener("click", (e) => {
+			e.preventDefault();
+			Router.go(Path.INFO);
 		});
 	}
 

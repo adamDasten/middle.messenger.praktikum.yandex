@@ -3,6 +3,8 @@ import "./TemplatePage.scss";
 import Block from "../../../../core/Block.js";
 import About from "../../../../components/About";
 import ProfileForm from "../../../../components/ProfileForm";
+import Router from "../../../../core/Router";
+import { Path } from "../../../../consts/routes";
 
 interface IProps {
 	about: About;
@@ -18,6 +20,13 @@ export default class TemplatePage extends Block<IProps> {
 			attr: {
 				class: "template-page",
 			},
+		});
+
+		const backButton = this.element?.querySelector(".template-page__backs a");
+
+		backButton?.addEventListener("click", (e) => {
+			e.preventDefault();
+			Router.go(Path.CHATS);
 		});
 	}
 

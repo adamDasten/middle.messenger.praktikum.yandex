@@ -6,6 +6,8 @@ import arrowBack from "#/static/arrow_back.svg";
 import TemplatePage from "../../templates/TemplatePage";
 import ProfileInput from "../../../../components/ProfileInput/ProfileInput";
 import ProfileForm from "../../../../components/ProfileForm";
+import { Path } from "../../../../consts/routes";
+import AuthController from "../../../../controllers/AuthController";
 
 const about = new About({
 	name: "Адам",
@@ -84,28 +86,32 @@ const fields = [
 const actions = [
 	new ActionBtn({
 		textLink: "Изменить данные",
-		path: "/data",
+		path: Path.DATA,
 	}),
 	new ActionBtn({
 		textLink: "Изменить пароль",
-		path: "/passwords",
+		path: Path.PASSWORDS,
 	}),
 	new ActionBtn({
 		textLink: "Выйти",
-		path: "/",
+		path: Path.MAIN,
 		indentify: "red",
+		events: {
+			click: () => {
+				AuthController.logout();
+			},
+		},
 	}),
 ];
 
 const profileForm = new ProfileForm({
 	fields,
-	page: "info",
 	actions,
 });
 
 export default new TemplatePage({
 	about,
-	page: "info",
+	page: "info-ord",
 	imgSrc: arrowBack,
 	form: profileForm,
 });

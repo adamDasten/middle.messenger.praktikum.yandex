@@ -50,13 +50,13 @@ const about = new About({
 
 const profileForm = new ProfileForm({
 	fields,
-	page: "passwords",
+	page: "changePassword",
 	actions,
 });
 
 export default new TemplatePage({
 	about,
-	page: "passwords",
+	page: "changePassword",
 	imgSrc: arrowBack,
 	form: profileForm,
 });

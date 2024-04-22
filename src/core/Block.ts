@@ -252,12 +252,11 @@ export default class Block<T extends object = object> {
 		return true;
 	}
 
-	public setProps(newProps: Record<string, T>) {
+	public setProps(newProps: Record<string, unknown>) {
 		if (!newProps) {
 			return;
 		}
 
-		this.setUpdate = false;
 		const oldValue = { ...this.props };
 
 		const { children, props, lists } = this._getChildren(newProps);
@@ -274,10 +273,7 @@ export default class Block<T extends object = object> {
 			Object.assign(this.props, props);
 		}
 
-		if (this.setUpdate) {
-			this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
-			this.setUpdate = false;
-		}
+		this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
 	}
 
 	private makePropsProxy(props: object): object {
@@ -289,7 +285,6 @@ export default class Block<T extends object = object> {
 			set: (target: Record<string, unknown>, prop: string, value: unknown) => {
 				if (target[prop] !== value) {
 					const newTarget = { ...target, [prop]: value };
-					this.setUpdate = true;
 					return Reflect.set(newTarget, prop, value);
 				}
 				return false;
@@ -305,7 +300,7 @@ export default class Block<T extends object = object> {
 	}
 
 	public show() {
-		this.getContent().style.display = "block";
+		this.getContent().style.display = "flex";
 	}
 
 	public hide() {

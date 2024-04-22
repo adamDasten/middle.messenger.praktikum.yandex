@@ -1,11 +1,15 @@
 import { Template } from "./Template";
 import "./ActionBtn.scss";
 import Block from "../../core/Block";
+import Router from "../../core/Router";
 
 interface IProps {
 	textLink: string;
 	path: string;
 	indentify?: string;
+	events?: {
+		click: () => void;
+	};
 }
 
 export default class AcitonBtn extends Block<IProps> {
@@ -15,6 +19,12 @@ export default class AcitonBtn extends Block<IProps> {
 			attr: {
 				class: "action-btn-wrapper",
 			},
+		});
+
+		const link = this.element?.querySelector(".action-btn");
+		link?.addEventListener("click", (e) => {
+			e.preventDefault();
+			Router.go(props.path);
 		});
 	}
 
