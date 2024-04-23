@@ -15,7 +15,7 @@ interface IProps {
 	settings?: { withInternalID: string };
 }
 
-interface IPropsAndStubs extends IProps {
+export interface IPropsAndStubs extends IProps {
 	[key: string]: unknown;
 }
 

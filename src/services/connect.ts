@@ -1,9 +1,10 @@
+import { ProfileResponseData } from "../api/types";
 import Block from "../core/Block";
 import { Indexed } from "../types";
 import isEqual from "../utils/isEqual";
 import Store, { StoreEvents } from "./Store";
 
-export function connect(mapStateToProps: (state: Indexed) => Indexed) {
+function connect(mapStateToProps: (state: Indexed) => Indexed) {
 	return function (Component: typeof Block) {
 		return class extends Component {
 			constructor(tag: string, props: Record<string, unknown> | undefined) {
@@ -23,3 +24,32 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed) {
 		};
 	};
 }
+
+export const withAvatar = connect((state: Record<string, unknown>) => {
+	const userState = state.user as ProfileResponseData;
+
+	if (!userState || !userState.avatar) {
+		return {
+			avatarUrl: "",
+		};
+	}
+	return {
+		avatarUrl: userState.avatar,
+	};
+});
+
+export const withAvatarAndName = connect((state) => {
+	const userState = state.user as ProfileResponseData;
+
+	if (userState) {
+		return {
+			avatarURL: userState.avatar,
+			name: userState.first_name,
+		};
+	} else {
+		return {
+			avatarURL: "",
+			name: "",
+		};
+	}
+});
