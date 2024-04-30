@@ -1,13 +1,15 @@
 import Block from "../../core/Block";
+import Store from "../../services/Store";
 import "./ChatItem.scss";
 import { Template } from "./Template";
 
 interface IProps {
 	user: string;
-	your: boolean | string;
 	message: string;
 	dateTime: string;
-	notification: string | null;
+	notification: number;
+	title: string;
+	id: number;
 }
 
 export default class ChatItem extends Block<IProps> {
@@ -18,6 +20,16 @@ export default class ChatItem extends Block<IProps> {
 				class: "chat-item",
 			},
 		});
+
+		if (!this.element) return;
+
+		this.element.onclick = () => {
+			const currentChatId = Store.getState()?.currentChatId;
+
+			if (currentChatId === props.id) return;
+
+			Store.setState("currentChatId", props.id);
+		};
 	}
 
 	protected render() {

@@ -14,6 +14,26 @@
 	padding: 10px 0;
 	border-bottom: 1px solid $main-border-color;
 	position: relative;
+
+	nav {
+		display: none;
+	}
+
+	nav.active {
+		display: block;
+		padding: 10px;
+		min-height: 100px;
+		width: 280px;
+		position: absolute;
+		right: 0;
+		border: 2px solid #222;
+		background-color: #fff;
+		> button {
+			margin-bottom: 20px;
+			cursor: pointer;
+		}
+	}
+
 	&__user {
 		display: flex;
 		align-items: center;
@@ -34,6 +54,10 @@
 		border: none;
 		outline: none;
 		cursor: pointer;
+
+		&-wrapper {
+			position: relative;
+		}
 	}
 }
 

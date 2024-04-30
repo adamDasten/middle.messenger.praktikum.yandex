@@ -1,14 +1,15 @@
-import { Path } from "../../consts/routes";
 import Block from "../../core/Block";
-import Router from "../../core/Router";
-import ChatItem from "../ChatItem";
+import AddChat from "../AddChat";
+import ChatItems from "../ChatItems";
+import ToProfile from "../ToProfile/ToProfile";
 import "./Aside.scss";
 import { Template } from "./Template";
 
 interface IProps {
-	items: ChatItem[];
 	searchSvg: string;
-	arrowImg: string;
+	addChat: AddChat;
+	toProfile: ToProfile;
+	chatItems: ChatItems;
 }
 
 export default class Aside extends Block<IProps> {
@@ -18,14 +19,6 @@ export default class Aside extends Block<IProps> {
 			attr: {
 				class: "aside",
 			},
-		});
-
-		// Для ссылки профиля делаем роутинг
-		const link = this.element?.querySelector(".to-profile");
-
-		link?.addEventListener("click", (e) => {
-			e.preventDefault();
-			Router.go(Path.INFO);
 		});
 	}
 

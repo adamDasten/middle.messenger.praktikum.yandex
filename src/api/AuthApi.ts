@@ -1,5 +1,4 @@
 import authApi from "../core/HTTPTransport";
-import Store from "../services/Store";
 
 enum URLS {
 	SIGN_UP = "/auth/signup",
@@ -33,7 +32,6 @@ export default class AuthApi {
 
 	getUser() {
 		return authApi.get(URLS.GET_USER).then((data) => {
-			Store.setState("user", data);
 			return data;
 		});
 	}

@@ -257,8 +257,6 @@ export default class Block<T extends object = object> {
 			return;
 		}
 
-		const oldValue = { ...this.props };
-
 		const { children, props, lists } = this._getChildren(newProps);
 
 		if (Object.values(children).length) {
@@ -272,8 +270,6 @@ export default class Block<T extends object = object> {
 		if (Object.values(props).length) {
 			Object.assign(this.props, props);
 		}
-
-		this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
 	}
 
 	private makePropsProxy(props: object): object {
@@ -284,10 +280,11 @@ export default class Block<T extends object = object> {
 			},
 			set: (target: Record<string, unknown>, prop: string, value: unknown) => {
 				if (target[prop] !== value) {
-					const newTarget = { ...target, [prop]: value };
-					return Reflect.set(newTarget, prop, value);
+					const old = target[prop];
+					target[prop] = value;
+					this.eventBus.emit(Block.EVENTS.FLOW_CDU, old, value);
 				}
-				return false;
+				return true;
 			},
 			deleteProperty() {
 				throw new Error("No access");

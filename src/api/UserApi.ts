@@ -1,8 +1,3 @@
-"/auth/signup";
-"/auth/signin";
-"/auth/user";
-"/auth/logout";
-
 import HTTPTransport from "../core/HTTPTransport";
 import {
 	ChangePasswordRequest,

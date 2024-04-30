@@ -6,6 +6,9 @@ import arrowBack from "#/static/arrow_back.svg";
 import TemplatePage from "../../templates/TemplatePage";
 import ProfileInput from "../../../../components/ProfileInput/ProfileInput";
 import ProfileForm from "../../../../components/ProfileForm";
+import { withAvatar } from "../../../../services/connect";
+import Store from "../../../../services/Store";
+import { ProfileResponseData } from "../../../../api/types";
 
 const fields = [
 	new RowData({
@@ -44,8 +47,12 @@ const actions = [
 	new Button({ text: "Сохранить", attr: { class: "button-center" } }),
 ];
 
-const about = new About({
-	pathImg: profileSvg,
+const AboutConnected = withAvatar(About);
+
+const state = Store.getState().user as ProfileResponseData | undefined;
+
+const about = new AboutConnected({
+	avatar: state?.avatar ?? profileSvg,
 });
 
 const profileForm = new ProfileForm({

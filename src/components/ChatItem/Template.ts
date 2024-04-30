@@ -1,10 +1,10 @@
 export const Template = `
   <div class="chat-item__img"></div>
   <div class="chat-item__info">
-    <h4>{{user}}</h4>
+    <h4>{{title}}</h4>
     <div class="chat-item__info-naming">
-      {{#if your}}
-        <span class="chat-item__info-you">Вы:</span>
+      {{#if user}}
+        <span class="chat-item__info-you">{{ user }}:</span>
       {{/if}}
       <span class="chat-item__info-message">
         {{message}}

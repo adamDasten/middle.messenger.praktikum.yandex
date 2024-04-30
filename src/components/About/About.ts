@@ -4,8 +4,9 @@ import Block from "../../core/Block";
 import UserController from "../../controllers/UserController";
 
 interface IProps {
-	pathImg: string;
+	avatar: string;
 	name?: string;
+	attr?: object;
 }
 
 export default class About extends Block<IProps> {
@@ -13,6 +14,7 @@ export default class About extends Block<IProps> {
 		super("div", {
 			...props,
 			attr: {
+				...props?.attr,
 				class: "about",
 			},
 		});

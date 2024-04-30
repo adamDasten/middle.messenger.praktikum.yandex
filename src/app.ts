@@ -10,8 +10,10 @@ import PassProfile from "./feature/Profile/pages/PassProfile";
 import Error505 from "./feature/Error/pages/505";
 import Error404 from "./feature/Error/pages/404";
 import "./styles/index.scss";
+import Store from "./services/Store";
+import ChatController from "./controllers/ChatController";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 	Router.use(Path.MAIN, LoginPage)
 		.use(Path.REGISTRATION, RegistrationPage)
 		.use(Path.CHATS, MessagePage)
@@ -21,6 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		.use(Path.DATA, ChangeProfile)
 		.use(Path.FIFTY, Error505)
 		.use(Path.FOURTY, Error404);
+
+	if (Store.getState()?.user) {
+		await ChatController.getChats();
+	}
+
+	Store.setState("currentChat", null);
 
 	Router.start();
 });

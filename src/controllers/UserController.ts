@@ -2,9 +2,11 @@ import UserApi from "../api/UserApi";
 import {
 	ChangePasswordRequest,
 	ProfileRequestData,
+	ProfileResponseData,
 	SearchUserRequest,
 } from "../api/types";
 import Store from "../services/Store";
+import { dataToSave } from "../utils/dataToSave";
 
 class UserController {
 	private _api: UserApi;
@@ -27,8 +29,9 @@ class UserController {
 			};
 
 			const { response } = await this._api.changeProfileData(validateData);
-      
-			Store.setState("user", JSON.parse(response));
+			const getData = JSON.parse(response) as ProfileResponseData;
+
+			dataToSave(getData);
 		} catch (e) {
 			alert(e);
 		}
@@ -43,8 +46,6 @@ class UserController {
 				newPassword: data.newPassword,
 			};
 
-			// TODO: в стейт?
-
 			await this._api.changePassword(payload);
 		} catch (e) {
 			alert(e);
@@ -53,10 +54,12 @@ class UserController {
 
 	async changeAvatar(data: FormData | null) {
 		try {
-			if (!data) throw Error("Неправильно заполнен пароль");
+			if (!data) throw Error("Неправильно обновлена картинка");
 
-			//  TODO: проверить аватар
-			await this._api.changeAvatar(data);
+			const res = await this._api.changeAvatar(data);
+			const getData = JSON.parse(res.response) as ProfileResponseData;
+
+			dataToSave(getData);
 		} catch (e) {
 			alert(e);
 		}
@@ -64,7 +67,7 @@ class UserController {
 
 	async searchByLogin(data: Record<string, string> | null) {
 		try {
-			if (!data) throw Error("Неправильно заполнен пароль");
+			if (!data) throw Error("Неправильно данные по поиску");
 
 			const payload: SearchUserRequest = {
 				login: data.login,

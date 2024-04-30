@@ -1,8 +1,14 @@
 import AuthApi from "../api/AuthApi";
-import { SignInRequest, SignUpRequest } from "../api/types";
+import {
+	ProfileResponseData,
+	SignInRequest,
+	SignUpRequest,
+} from "../api/types";
 import { Path } from "../consts/routes";
 import Router from "../core/Router";
 import Store from "../services/Store";
+import { dataToSave } from "../utils/dataToSave";
+import ChatController from "./ChatController";
 
 class AuthController {
 	private _api: AuthApi;
@@ -25,6 +31,7 @@ class AuthController {
 			await this._api.signIn(transformToData);
 
 			await this.getUser();
+			await ChatController.getChats();
 
 			// очищаем форму
 			(e.target as HTMLFormElement).reset();
@@ -32,8 +39,19 @@ class AuthController {
 			Router.go("/chats");
 
 			// Останавливаем крутилку
-		} catch (error) {
+		} catch (error: unknown) {
 			alert(error);
+
+			try {
+				if (
+					JSON.parse((error as XMLHttpRequest).response).reason ===
+					"User already in system"
+				) {
+					await this.getUser();
+				}
+			} catch (e) {
+				console.log("error parse");
+			}
 		}
 	}
 
@@ -71,7 +89,8 @@ class AuthController {
 	public async getUser() {
 		try {
 			const { response } = await this._api.getUser();
-			Store.setState("user", JSON.parse(response));
+			const getData = JSON.parse(response) as ProfileResponseData;
+			dataToSave(getData);
 		} catch (e) {
 			alert(e);
 		}

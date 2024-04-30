@@ -1,25 +1,47 @@
-import RowData from "../../../../components/RowData";
 import About from "../../../../components/About";
 import ActionBtn from "../../../../components/ActionBtn";
-import profileSvg from "../../../../../static/profile_placeholder.svg";
 import arrowBack from "#/static/arrow_back.svg";
 import TemplatePage from "../../templates/TemplatePage";
 import ProfileInput from "../../../../components/ProfileInput/ProfileInput";
 import ProfileForm from "../../../../components/ProfileForm";
 import { Path } from "../../../../consts/routes";
 import AuthController from "../../../../controllers/AuthController";
+import {
+	withAvatarAndName,
+	withDispayName,
+	withEmail,
+	withLogin,
+	withName,
+	withPhone,
+	withSecondName,
+} from "../../../../services/connect";
+import Store from "../../../../services/Store";
+import { ProfileResponseData } from "../../../../api/types";
+import profileSvg from "../../../../../static/profile_placeholder.svg";
+import RowData from "../../../../components/RowData";
 
-const about = new About({
-	name: "Адам",
-	pathImg: profileSvg,
+const AboutConnected = withAvatarAndName(About);
+
+const state = Store.getState().user as ProfileResponseData | undefined;
+
+const about = new AboutConnected({
+	name: state?.first_name,
+	avatar: state?.avatar ?? profileSvg,
 });
+
+const FirstNameField = withName(ProfileInput);
+const LoginField = withLogin(ProfileInput);
+const SecondNameField = withSecondName(ProfileInput);
+const DisplayNameField = withDispayName(ProfileInput);
+const PhoneField = withPhone(ProfileInput);
+const EmailField = withEmail(ProfileInput);
 
 const fields = [
 	new RowData({
 		name: "Почта",
-		input: new ProfileInput({
+		input: new EmailField({
 			attr: {
-				value: "pochta@yandex.ru",
+				value: state?.email ?? "pochta@yandex.ru",
 				name: "email",
 				type: "email",
 				disabled: true,
@@ -28,9 +50,9 @@ const fields = [
 	}),
 	new RowData({
 		name: "Логин",
-		input: new ProfileInput({
+		input: new LoginField({
 			attr: {
-				value: "ivanivanov",
+				value: state?.login ?? "ivanivanov",
 				name: "login",
 				type: "text",
 				disabled: true,
@@ -39,9 +61,9 @@ const fields = [
 	}),
 	new RowData({
 		name: "Имя",
-		input: new ProfileInput({
+		input: new FirstNameField({
 			attr: {
-				value: "Адам",
+				value: state?.first_name ?? "Адам",
 				name: "first_name",
 				type: "text",
 				disabled: true,
@@ -50,9 +72,9 @@ const fields = [
 	}),
 	new RowData({
 		name: "Фамилия",
-		input: new ProfileInput({
+		input: new SecondNameField({
 			attr: {
-				value: "Иванов",
+				value: state?.second_name ?? "Иванов",
 				name: "second_name",
 				type: "text",
 				disabled: true,
@@ -61,10 +83,10 @@ const fields = [
 	}),
 	new RowData({
 		name: "Имя в чате",
-		input: new ProfileInput({
+		input: new DisplayNameField({
 			attr: {
 				value: "Адам",
-				name: "display_name",
+				name: state?.display_name ?? "display_name",
 				type: "text",
 				disabled: true,
 			},
@@ -72,9 +94,9 @@ const fields = [
 	}),
 	new RowData({
 		name: "Телефон",
-		input: new ProfileInput({
+		input: new PhoneField({
 			attr: {
-				value: "+79099673030",
+				value: state?.phone ?? "+79099673030",
 				name: "phone",
 				type: "tel",
 				disabled: true,

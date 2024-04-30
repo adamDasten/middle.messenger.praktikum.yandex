@@ -1,3 +1,4 @@
+import { ProfileResponseData } from "../api/types";
 import { Path } from "../consts/routes";
 import Store from "../services/Store";
 import Block from "./Block";
@@ -66,13 +67,21 @@ export class Router {
 	}
 
 	getRoute(pathname: string) {
-		const user = Store.getState().user;
-		if (!user && pathname !== Path.REGISTRATION && pathname !== Path.MAIN) {
+		const userState = Store.getState().user as ProfileResponseData | undefined;
+
+		if (
+			!userState &&
+			pathname !== Path.REGISTRATION &&
+			pathname !== Path.MAIN
+		) {
 			this.go(Path.MAIN);
 			return;
 		}
 
-		if ((pathname === Path.MAIN || pathname === Path.REGISTRATION) && user) {
+		if (
+			(pathname === Path.MAIN || pathname === Path.REGISTRATION) &&
+			userState
+		) {
 			this.go(Path.CHATS);
 
 			return;

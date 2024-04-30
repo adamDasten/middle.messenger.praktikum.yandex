@@ -19,6 +19,22 @@ export default class Talking extends Block<IProps> {
 				class: "talking",
 			},
 		});
+
+		this.element
+			?.querySelector(".top-dialog__options")
+			?.addEventListener("click", () => {
+				this.element?.querySelector("nav")?.classList.toggle("active");
+			});
+
+		this.element?.querySelector(".add-user")?.addEventListener("click", () => {
+			alert(12);
+		});
+
+		this.element
+			?.querySelector(".delete-user")
+			?.addEventListener("click", () => {
+				alert(21);
+			});
 	}
 
 	render() {

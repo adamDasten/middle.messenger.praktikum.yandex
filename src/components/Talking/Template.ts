@@ -8,9 +8,15 @@ export const Template = `
       {{username}}
     </div>
   </div>
-  <button class="top-dialog__options">
-    <img src={{optionsSvg}} alt="Опции">
-  </button>
+  <div class="top-dialog__options-wrapper">
+    <button class="top-dialog__options">
+      <img src={{optionsSvg}} alt="Опции">
+    </button>
+    <nav>
+      <button class="add-user">Добавить участника</button>
+      <button class="delete-user">Удалить участника</button>
+    </nav>
+  </div>
 </div>
   <div class="dialog-chat">
   <div class="dialog-chat__date">

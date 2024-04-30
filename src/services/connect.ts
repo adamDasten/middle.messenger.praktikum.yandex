@@ -3,6 +3,7 @@ import Block from "../core/Block";
 import { Indexed } from "../types";
 import isEqual from "../utils/isEqual";
 import Store, { StoreEvents } from "./Store";
+import profileSvg from "../../static/profile_placeholder.svg";
 
 function connect(mapStateToProps: (state: Indexed) => Indexed) {
 	return function (Component: typeof Block) {
@@ -25,31 +26,116 @@ function connect(mapStateToProps: (state: Indexed) => Indexed) {
 	};
 }
 
-export const withAvatar = connect((state: Record<string, unknown>) => {
-	const userState = state.user as ProfileResponseData;
+export const withAvatar: Function = connect(
+	(state: Record<string, unknown>) => {
+		const userState = state.user as ProfileResponseData | undefined;
 
-	if (!userState || !userState.avatar) {
+		if (!userState || !userState.avatar) {
+			return {
+				avatar: null,
+			};
+		}
+
 		return {
-			avatarUrl: "",
+			avatar: userState.avatar,
 		};
 	}
+);
+
+export const withAvatarAndName: Function = connect(
+	(state: Record<string, unknown>) => {
+		const userState = state.user as ProfileResponseData | undefined;
+
+		if (!userState) {
+			return {
+				avatar: profileSvg,
+				name: "Неизвестно",
+			};
+		}
+
+		if (!userState.avatar) {
+			return {
+				avatar: profileSvg,
+				name: userState.first_name,
+			};
+		}
+
+		return {
+			avatar: userState.avatar,
+			name: userState.first_name,
+		};
+	}
+);
+
+export const withName: Function = connect((state: Record<string, unknown>) => {
+	const userState = state.user as ProfileResponseData | undefined;
+
 	return {
-		avatarUrl: userState.avatar,
+		attr: {
+			value: userState?.first_name,
+		},
 	};
 });
 
-export const withAvatarAndName = connect((state) => {
-	const userState = state.user as ProfileResponseData;
+export const withSecondName: Function = connect(
+	(state: Record<string, unknown>) => {
+		const userState = state.user as ProfileResponseData | undefined;
 
-	if (userState) {
 		return {
-			avatarURL: userState.avatar,
-			name: userState.first_name,
-		};
-	} else {
-		return {
-			avatarURL: "",
-			name: "",
+			attr: {
+				value: userState?.second_name,
+			},
 		};
 	}
+);
+
+export const withEmail: Function = connect((state: Record<string, unknown>) => {
+	const userState = state.user as ProfileResponseData | undefined;
+
+	return {
+		attr: {
+			value: userState?.email,
+		},
+	};
+});
+
+export const withLogin: Function = connect((state: Record<string, unknown>) => {
+	const userState = state.user as ProfileResponseData | undefined;
+
+	return {
+		attr: {
+			value: userState?.login,
+		},
+	};
+});
+
+export const withPhone: Function = connect((state: Record<string, unknown>) => {
+	const userState = state.user as ProfileResponseData | undefined;
+
+	return {
+		attr: {
+			value: userState?.phone,
+		},
+	};
+});
+
+export const withDispayName: Function = connect(
+	(state: Record<string, unknown>) => {
+		const userState = state.user as ProfileResponseData | undefined;
+
+		return {
+			attr: {
+				value: userState?.display_name,
+			},
+		};
+	}
+);
+
+export const withChatItems: Function = connect((state) => {
+	if (!state.chats) {
+		return {};
+	}
+	return {
+		items: state.chats,
+	};
 });
