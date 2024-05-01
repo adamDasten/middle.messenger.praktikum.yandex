@@ -7,7 +7,7 @@ import addFile from "#/static/add_svg.svg";
 import arrowGo from "#/static/arrow_next.svg";
 import DialogInput from "../../../../components/DialogInput";
 import EmptyTalk from "../../../../components/EmptyTalk";
-import { usersList } from "../../../../services/connect";
+import { usersList } from "../../../../services/userConnectInfo";
 
 const messages = [
 	new Message({
