@@ -123,6 +123,14 @@ export const withPhone: Function = connect((state: Record<string, unknown>) => {
 	};
 });
 
+export const withUsers: Function = connect((state) => {
+	if (!state.userSearchRes) return {};
+
+	return {
+		items: state.userSearchRes,
+	};
+});
+
 export const withDispayName: Function = connect(
 	(state: Record<string, unknown>) => {
 		const userState = state.user as ProfileResponseData | undefined;
@@ -151,13 +159,5 @@ export const withChatTemplate: Function = connect((state) => {
 
 	return {
 		content: state.currentChatId ? ContentMessage : ContentEmpty,
-	};
-});
-
-export const withUsers: Function = connect((state) => {
-	if (!state.userSearchRes) return {};
-
-	return {
-		items: state.userSearchRes,
 	};
 });

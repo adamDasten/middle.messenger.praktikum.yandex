@@ -3,7 +3,11 @@ import searchSvg from "#/static/searchSvg.svg";
 import ChatTemplate from "../../templates/ChatTemplate";
 import AddChat from "../../../../components/AddChat";
 import toProfileArrow from "#/static/to-profile.svg";
-import { withChatItems, withChatTemplate } from "../../../../services/connect";
+import {
+	withUsers,
+	withChatItems,
+	withChatTemplate,
+} from "../../../../services/connect";
 import ToProfile from "../../../../components/ToProfile";
 import ChatItems from "../../../../components/ChatItems";
 import Store from "../../../../services/Store";
@@ -18,7 +22,6 @@ import DialogInput from "../../../../components/DialogInput";
 import EmptyTalk from "../../../../components/EmptyTalk";
 import UserItem from "../../../../components/UserItem";
 import UsersList from "../../../../components/UsersList";
-import { withUsers } from "../../../../services/connect";
 
 const UserListWrapper = withUsers(UsersList);
 
