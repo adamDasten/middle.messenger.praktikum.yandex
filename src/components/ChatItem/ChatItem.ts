@@ -1,3 +1,4 @@
+import ChatController from "../../controllers/ChatController";
 import Block from "../../core/Block";
 import Store from "../../services/Store";
 import "./ChatItem.scss";
@@ -30,11 +31,11 @@ export default class ChatItem extends Block<IProps> {
 			document
 				.querySelectorAll(".chat-item")
 				?.forEach((item) => item.classList.remove("chat-item-active"));
-
-			if (currentChatId === props.id) return;
-
-			Store.setState("currentChatId", props.id);
 			this.element?.classList.add("chat-item-active");
+
+			if (currentChatId == props.id) return;
+
+			ChatController.openChat(String(props.id), props.title);
 		};
 	}
 

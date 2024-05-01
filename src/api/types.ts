@@ -78,15 +78,20 @@ export interface WebSocketEvents {
 	onMessage: (event: MessageEvent) => void;
 }
 
-export interface messageFromSocket {
+export interface messageFromSocketMulti {
 	chat_id: number;
-	content: string;
-	file: unknown;
-	id: number;
-	is_read: boolean;
 	time: string;
 	type: string;
-	user_id: number;
+	user_id: string;
+	content: string;
+}
+
+export interface messageFromSocket {
+	id: string;
+	time: string;
+	user_id: string;
+	content: string;
+	type: string;
 }
 
 export interface IMessage {

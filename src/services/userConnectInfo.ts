@@ -1,6 +1,7 @@
 import { ProfileResponseData } from "../api/types";
 import UserItem from "../components/UserItem";
 import UsersList from "../components/UsersList";
+import Store from "./Store";
 import { connect } from "./connect";
 
 const withUsers: Function = connect((state) => {
@@ -11,10 +12,13 @@ const withUsers: Function = connect((state) => {
 			return new UserItem({
 				id: item.id,
 				name: item.first_name,
+				login: item.login,
 			});
 		}),
 	};
 });
 const UserListWrapper = withUsers(UsersList);
 
-export const usersList = new UserListWrapper();
+export const usersList = new UserListWrapper({
+	items: Store.getState()?.userSearchRes,
+});

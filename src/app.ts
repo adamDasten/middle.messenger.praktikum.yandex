@@ -11,10 +11,9 @@ import Error404 from "./feature/Error/pages/404";
 import "./styles/index.scss";
 import Store from "./services/Store";
 import ChatController from "./controllers/ChatController";
+import UserController from "./controllers/UserController";
 
 document.addEventListener("DOMContentLoaded", async () => {
-	Store.setState("currentChatId", null);
-
 	Router.use(Path.MAIN, LoginPage)
 		.use(Path.REGISTRATION, RegistrationPage)
 		.use(Path.CHATS, MessagePage)
@@ -26,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 	if (Store.getState()?.user) {
 		await ChatController.getChats();
+		await UserController.searchByLogin({ login: "" });
 	}
 	Router.start();
 });

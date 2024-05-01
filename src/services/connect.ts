@@ -145,11 +145,7 @@ export const withChatItems: Function = connect((state) => {
 });
 
 export const withChatTemplate: Function = connect((state) => {
-	if (!state.currentChatId) {
-		return {};
-	}
-
 	return {
-		content: state.currentChatId ? ContentMessage : ContentEmpty,
+		content: state?.currentChatId ? ContentMessage : ContentEmpty,
 	};
 });

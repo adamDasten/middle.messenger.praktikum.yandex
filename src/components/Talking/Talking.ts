@@ -5,10 +5,11 @@ import FormDialog from "../FormDialog";
 import Message from "../Message";
 import UsersList from "../UsersList";
 import UserController from "../../controllers/UserController";
-// import ChatController from "../../controllers/ChatController";
+import ChatController from "../../controllers/ChatController";
+import ChatName from "../ChatName";
 
 interface IProps {
-	username: string;
+	username: ChatName;
 	optionsSvg: string;
 	messages: Message[];
 	form: FormDialog;
@@ -23,39 +24,52 @@ export default class Talking extends Block<IProps> {
 				class: "talking",
 			},
 		});
+	}
 
-		this.element
-			?.querySelector(".top-dialog__options")
-			?.addEventListener("click", () => {
+	eventChildListeners() {
+		if (!this.element) return;
+		this.element.onclick = (e) => {
+			const target = e.target as HTMLElement;
+			if (
+				target.classList.contains("top-dialog__options") ||
+				target.parentElement?.classList.contains("top-dialog__options")
+			) {
 				this.element?.querySelector("nav")?.classList.toggle("active");
-			});
+			}
 
-		this.element?.querySelector(".add-user")?.addEventListener("click", () => {
-			// const idUser = Number(prompt("Введите id пользователя", ""));
-		});
+			if (target.classList.contains("add-user")) {
+				const idUser = String(
+					prompt("Введите id пользователя для добавления", "")
+				);
+				if (!idUser) return;
 
-		this.element
-			?.querySelector(".delete-user")
-			?.addEventListener("click", () => {
-				alert(21);
-			});
+				ChatController.addUserToChat(idUser);
+			}
 
-		const userSearchButton = this.element?.querySelector(
-			".top-dialog-users-search"
-		);
-		const userSearchInput = this.element?.querySelector(
-			".top-dialog-users-input"
-		);
+			if (target.classList.contains("delete-user")) {
+				const idUser = String(
+					prompt("Введите id пользователя для удаления", "")
+				);
+				if (!idUser) return;
+				ChatController.removeUserFromChat(idUser);
+			}
 
-		userSearchButton?.addEventListener("click", () => {
-			const val = (userSearchInput as HTMLInputElement)?.value;
-			UserController.searchByLogin({
-				login: val,
-			});
-		});
+			if (target.classList.contains("top-dialog-users-search")) {
+				const userSearchInput = this.element?.querySelector(
+					".top-dialog-users-input"
+				);
+
+				const val = (userSearchInput as HTMLInputElement)?.value;
+				UserController.searchByLogin({
+					login: val,
+				});
+			}
+		};
 	}
 
 	render() {
-		return this.compile(Template, this.props);
+		const elementLayout = this.compile(Template, this.props);
+		this.eventChildListeners();
+		return elementLayout;
 	}
 }

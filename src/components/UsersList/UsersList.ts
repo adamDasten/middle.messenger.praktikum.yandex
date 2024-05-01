@@ -13,11 +13,10 @@ interface IProps {
 export default class UsersList extends Block<IProps> {
 	constructor(props: IProps) {
 		super("div", {
-			props: {
-				...props,
-				attr: {
-					class: "users-list",
-				},
+			...props,
+
+			attr: {
+				class: "users-list",
 			},
 		});
 	}

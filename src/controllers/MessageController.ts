@@ -1,10 +1,5 @@
 import WebSocketFactory from "../api/WebSocketApi";
-import {
-	ProfileResponseData,
-	SocketSendData,
-	WebSocketEvents,
-	WebSocketProps,
-} from "../api/types";
+import { SocketSendData, WebSocketEvents, WebSocketProps } from "../api/types";
 import Store from "../services/Store";
 import ChatController from "./ChatController";
 
@@ -55,7 +50,6 @@ class MessagesController {
 	closeSocket() {
 		clearInterval(this._pingIntervalId);
 		this._api.close();
-		this._api;
 	}
 
 	handleSocketOpen() {
@@ -79,32 +73,28 @@ class MessagesController {
 			if (data.type === "pong" || data.type === "user connected") {
 				return;
 			}
+
 			let messagesState: Array<unknown> = [];
 			if (Store.getState().messages instanceof Array) {
 				messagesState = messagesState.concat(Store.getState().messages);
 			}
 
-			//needed to define message position
-			const userId = (Store.getState().user as ProfileResponseData).id;
-
-			//processing old messages load
 			if (Array.isArray(data)) {
-				messagesState = messagesState.concat(data, userId);
+				messagesState = messagesState.concat(data);
 				if (data.length === 20) {
 					const ids = data.map((item) => item.id);
 					const maxId = Math.max(...ids);
-					//won't create a loop, it's async
+
 					this.getOldMessages(maxId);
 				}
-				//processing new message
 			} else {
 				messagesState.unshift(data);
-				// update the last message content in sidebar dialogue
-				// can't use the recieved message, since it doesn't contain sender login/name
-				// and requesting it by id would mean the same delay and traffic as getting chats
+
 				ChatController.getChats();
 			}
 			Store.setState("messages", messagesState);
+
+			console.log(Store.getState().messages);
 		} catch (e) {
 			console.log(e);
 		}

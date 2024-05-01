@@ -23,6 +23,9 @@ class Store extends EventBus {
 		this.on(StoreEvents.EVENT_UPDATE, () => {
 			localStorage.setItem(Store.RootStore, JSON.stringify(this._state));
 		});
+
+		this.setState("currentChatId", null);
+		this.setState("currentChatTitle", null);
 	}
 
 	getState() {

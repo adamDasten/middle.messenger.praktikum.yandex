@@ -5,7 +5,7 @@ export const Template = `
 
     </div>
     <div class="top-dialog__user-name">
-      {{username}}
+      {{{username}}}
     </div>
   </div>
   <div class="top-dialog__options-wrapper">
@@ -26,9 +26,6 @@ export const Template = `
   </div>
 </div>
   <div class="dialog-chat">
-  <div class="dialog-chat__date">
-    19 июня
-  </div>
   {{{ messages }}}
 </div>
 {{{ form }}}

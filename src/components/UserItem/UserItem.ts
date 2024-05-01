@@ -7,17 +7,16 @@ interface IProps {
 	};
 	id: number;
 	name: string;
+	login: string;
 }
 
 export default class UserItem extends Block<IProps> {
 	constructor(props: IProps) {
 		super("div", {
-			props: {
-				...props,
-				attr: {
-					...props.attr,
-					class: "user-item",
-				},
+			...props,
+			attr: {
+				...props.attr,
+				class: "user-item",
 			},
 		});
 	}

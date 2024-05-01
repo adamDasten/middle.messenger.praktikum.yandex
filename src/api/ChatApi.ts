@@ -25,7 +25,7 @@ export default class ChatApi {
 	}
 
 	// для получения айди чата!
-	getChatId(id: number) {
+	getChatId(id: string) {
 		return HTTPTransport.post(`${URLS.GET_CHAT_ID}/${id}`);
 	}
 }

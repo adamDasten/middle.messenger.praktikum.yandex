@@ -6,17 +6,6 @@ export interface SocketSendData {
 	type: string;
 }
 
-export interface messageFromSocket {
-	chat_id: number;
-	content: string;
-	file: unknown;
-	id: number;
-	is_read: boolean;
-	time: string;
-	type: string;
-	user_id: number;
-}
-
 export default class WebSocketFactory {
 	socket: WebSocket;
 	events: WebSocketEvents;

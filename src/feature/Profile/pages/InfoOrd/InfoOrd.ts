@@ -19,6 +19,7 @@ import Store from "../../../../services/Store";
 import { ProfileResponseData } from "../../../../api/types";
 import profileSvg from "../../../../../static/profile_placeholder.svg";
 import RowData from "../../../../components/RowData";
+import MessageController from "../../../../controllers/MessageController";
 
 const AboutConnected = withAvatarAndName(About);
 
@@ -121,6 +122,7 @@ const actions = [
 		events: {
 			click: () => {
 				AuthController.logout();
+				MessageController.closeSocket();
 			},
 		},
 	}),
