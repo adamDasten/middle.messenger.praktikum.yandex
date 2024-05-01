@@ -9,7 +9,7 @@ import ChatItems from "../../../../components/ChatItems";
 import Store from "../../../../services/Store";
 import EmptyTalk from "../../../../components/EmptyTalk";
 
-export const ContentEmpty = new EmptyTalk({
+const ContentEmpty = new EmptyTalk({
 	text: "Выберите чат чтобы отправить сообщение",
 });
 

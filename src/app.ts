@@ -1,6 +1,5 @@
 import { Path } from "./consts/routes";
 import Router from "./core/Router";
-import EmptyPage from "./feature/Chat/pages/EmptyPage";
 import MessagePage from "./feature/Chat/pages/MessagePage";
 import LoginPage from "./feature/Forms/Login/pages/LoginPage";
 import RegistrationPage from "./feature/Forms/Registration/pages/RegistrationPage";
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	Router.use(Path.MAIN, LoginPage)
 		.use(Path.REGISTRATION, RegistrationPage)
 		.use(Path.CHATS, MessagePage)
-		.use(Path.EMPTYS, EmptyPage)
 		.use(Path.PASSWORDS, PassProfile)
 		.use(Path.INFO, InfoOrd)
 		.use(Path.DATA, ChangeProfile)
