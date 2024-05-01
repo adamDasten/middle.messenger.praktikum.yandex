@@ -4,6 +4,7 @@ import Block from "../../core/Block.js";
 import FormDialog from "../FormDialog";
 import Message from "../Message";
 import UsersList from "../UsersList";
+import UserController from "../../controllers/UserController";
 // import ChatController from "../../controllers/ChatController";
 
 interface IProps {
@@ -30,7 +31,7 @@ export default class Talking extends Block<IProps> {
 			});
 
 		this.element?.querySelector(".add-user")?.addEventListener("click", () => {
-			// const idUser = Number(prompt('Введите id пользователя', ''))
+			// const idUser = Number(prompt("Введите id пользователя", ""));
 		});
 
 		this.element
@@ -38,6 +39,20 @@ export default class Talking extends Block<IProps> {
 			?.addEventListener("click", () => {
 				alert(21);
 			});
+
+		const userSearchButton = this.element?.querySelector(
+			".top-dialog-users-search"
+		);
+		const userSearchInput = this.element?.querySelector(
+			".top-dialog-users-input"
+		);
+
+		userSearchButton?.addEventListener("click", () => {
+			const val = (userSearchInput as HTMLInputElement)?.value;
+			UserController.searchByLogin({
+				login: val,
+			});
+		});
 	}
 
 	render() {

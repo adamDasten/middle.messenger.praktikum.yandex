@@ -75,7 +75,9 @@ class UserController {
 
 			const res = await this._api.searchUserByLogin(payload);
 
-			Store.setState("userSearchRes", JSON.parse(res.response));
+			const parseData = JSON.parse(res.response);
+
+			Store.setState("userSearchRes", parseData as ProfileResponseData[]);
 		} catch (e) {
 			alert(e);
 		}

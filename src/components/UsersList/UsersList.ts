@@ -16,7 +16,6 @@ export default class UsersList extends Block<IProps> {
 			props: {
 				...props,
 				attr: {
-					...props.attr,
 					class: "users-list",
 				},
 			},

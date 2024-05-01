@@ -5,7 +5,7 @@ interface IProps {
 	attr?: {
 		class: string;
 	};
-	id: string;
+	id: number;
 	name: string;
 }
 
