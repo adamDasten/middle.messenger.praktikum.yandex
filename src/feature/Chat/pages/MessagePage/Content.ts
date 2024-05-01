@@ -8,6 +8,7 @@ import EmptyTalk from "../../../../components/EmptyTalk";
 import { usersList } from "../../../../services/userConnectInfo";
 import { nameChat } from "../../../../services/nameConnectInfo";
 import { withMessages } from "../../../../services/messageConnection";
+import OptionsDiv from "../../../../components/Options/Options";
 
 const form = new FormDialog({
 	addFile,
@@ -21,6 +22,11 @@ const form = new FormDialog({
 	}),
 });
 
+const OptionsLayout = new OptionsDiv({
+	optionsSvg,
+	users: usersList,
+});
+
 const Talk = withMessages(Talking);
 
 export const ContentMessage = new Talk({
@@ -28,7 +34,7 @@ export const ContentMessage = new Talk({
 	optionsSvg,
 	username: nameChat,
 	form,
-	users: usersList,
+	options: OptionsLayout,
 });
 
 export const ContentEmpty = new EmptyTalk({
