@@ -3,12 +3,15 @@ import "./Talking.scss";
 import Block from "../../core/Block.js";
 import FormDialog from "../FormDialog";
 import Message from "../Message";
+import UsersList from "../UsersList";
+// import ChatController from "../../controllers/ChatController";
 
 interface IProps {
 	username: string;
 	optionsSvg: string;
 	messages: Message[];
 	form: FormDialog;
+	users: UsersList;
 }
 
 export default class Talking extends Block<IProps> {
@@ -27,7 +30,7 @@ export default class Talking extends Block<IProps> {
 			});
 
 		this.element?.querySelector(".add-user")?.addEventListener("click", () => {
-			alert(12);
+			// const idUser = Number(prompt('Введите id пользователя', ''))
 		});
 
 		this.element

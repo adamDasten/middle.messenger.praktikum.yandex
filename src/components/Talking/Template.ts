@@ -15,6 +15,13 @@ export const Template = `
     <nav>
       <button class="add-user">Добавить участника</button>
       <button class="delete-user">Удалить участника</button>
+      <div class="top-dialog-users">
+        <input placeholder="Введите логин пользователя" />
+        <button>Искать</button>
+        <div class="top-dialog-users-content">
+          {{{ users }}}
+        </div>
+      </div>
     </nav>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import WebSocketFactory from "../api/WebSockerApi";
+import WebSocketFactory from "../api/WebSocketApi";
 import {
 	ProfileResponseData,
 	SocketSendData,

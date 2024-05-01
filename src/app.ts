@@ -14,6 +14,8 @@ import Store from "./services/Store";
 import ChatController from "./controllers/ChatController";
 
 document.addEventListener("DOMContentLoaded", async () => {
+	Store.setState("currentChatId", null);
+
 	Router.use(Path.MAIN, LoginPage)
 		.use(Path.REGISTRATION, RegistrationPage)
 		.use(Path.CHATS, MessagePage)
@@ -27,8 +29,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (Store.getState()?.user) {
 		await ChatController.getChats();
 	}
-
-	Store.setState("currentChat", null);
-
 	Router.start();
 });

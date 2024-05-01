@@ -4,6 +4,10 @@ import { Indexed } from "../types";
 import isEqual from "../utils/isEqual";
 import Store, { StoreEvents } from "./Store";
 import profileSvg from "../../static/profile_placeholder.svg";
+import {
+	ContentMessage,
+	ContentEmpty,
+} from "../feature/Chat/pages/MessagePage/MessagePage";
 
 function connect(mapStateToProps: (state: Indexed) => Indexed) {
 	return function (Component: typeof Block) {
@@ -137,5 +141,23 @@ export const withChatItems: Function = connect((state) => {
 	}
 	return {
 		items: state.chats,
+	};
+});
+
+export const withChatTemplate: Function = connect((state) => {
+	if (!state.currentChatId) {
+		return {};
+	}
+
+	return {
+		content: state.currentChatId ? ContentMessage : ContentEmpty,
+	};
+});
+
+export const withUsers: Function = connect((state) => {
+	if (!state.userSearchRes) return {};
+
+	return {
+		items: state.userSearchRes,
 	};
 });

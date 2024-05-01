@@ -10,6 +10,7 @@ interface IProps {
 	notification: number;
 	title: string;
 	id: number;
+	active?: boolean;
 }
 
 export default class ChatItem extends Block<IProps> {
@@ -17,7 +18,7 @@ export default class ChatItem extends Block<IProps> {
 		super("div", {
 			...props,
 			attr: {
-				class: "chat-item",
+				class: `chat-item`,
 			},
 		});
 
@@ -26,9 +27,14 @@ export default class ChatItem extends Block<IProps> {
 		this.element.onclick = () => {
 			const currentChatId = Store.getState()?.currentChatId;
 
+			document
+				.querySelectorAll(".chat-item")
+				?.forEach((item) => item.classList.remove("chat-item-active"));
+
 			if (currentChatId === props.id) return;
 
 			Store.setState("currentChatId", props.id);
+			this.element?.classList.add("chat-item-active");
 		};
 	}
 

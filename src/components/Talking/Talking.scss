@@ -15,6 +15,10 @@
 	border-bottom: 1px solid $main-border-color;
 	position: relative;
 
+	&-users-content {
+		margin-top: 10px;
+	}
+
 	nav {
 		display: none;
 	}

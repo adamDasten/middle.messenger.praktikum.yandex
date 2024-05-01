@@ -15,8 +15,6 @@ class UserController {
 			const res = await this._api.getChats();
 			const chats = JSON.parse(res.response);
 
-			console.log(chats);
-
 			const chatsToStore = (chats as IMessage[])?.map((item) => {
 				return new ChatItem({
 					title: item.title,

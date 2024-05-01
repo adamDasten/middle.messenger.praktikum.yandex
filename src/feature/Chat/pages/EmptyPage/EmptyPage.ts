@@ -32,12 +32,12 @@ const aside = new Aside({
 	chatItems,
 });
 
-const content = new EmptyTalk({
+export const ContentEmpty = new EmptyTalk({
 	text: "Выберите чат чтобы отправить сообщение",
 });
 
 export default new ChatTemplate({
 	aside,
-	content,
+	content: ContentEmpty,
 	img: cactusImg,
 });
