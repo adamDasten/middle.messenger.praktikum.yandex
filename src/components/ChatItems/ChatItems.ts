@@ -1,6 +1,5 @@
 import Block from "../../core/Block";
 import ChatItem from "../ChatItem/ChatItem";
-import "./ChatItems.scss";
 import { Template } from "./Template";
 
 interface IProps {
