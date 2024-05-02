@@ -1,12 +1,13 @@
 import { Template } from "./Template";
 import "./About.scss";
 import Block from "../../core/Block";
-import UserController from "../../controllers/UserController";
+import InputAvatar from "../InputAvatar/InputAvatar";
 
 interface IProps {
 	avatar: string;
 	name?: string;
 	attr?: object;
+	inputAvatar: InputAvatar;
 }
 
 export default class About extends Block<IProps> {
@@ -17,15 +18,6 @@ export default class About extends Block<IProps> {
 				...props?.attr,
 				class: "about",
 			},
-		});
-
-		this.element?.querySelector("input")?.addEventListener("change", (e) => {
-			const files = (e.target as HTMLInputElement).files;
-			if (!files) return;
-			const img = files[0];
-			const formData = new FormData();
-			formData.append("avatar", img);
-			UserController.changeAvatar(formData);
 		});
 	}
 
