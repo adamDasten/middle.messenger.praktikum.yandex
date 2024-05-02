@@ -3,10 +3,8 @@ import "./Message.scss";
 import { Template } from "./Template";
 
 interface IProps {
-	your: string | boolean;
-	read?: string;
 	time: string;
-	message: string;
+	content: string;
 }
 
 export default class Message extends Block<IProps> {

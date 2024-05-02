@@ -3,7 +3,7 @@ import { deleteAndRenderError, hasError } from "./handleErrors";
 export const submitHandler = (e: Event, element: HTMLElement | null) => {
 	e.preventDefault();
 
-	if (!element) return;
+	if (!element) return null;
 
 	const childs = element.querySelectorAll("input");
 
@@ -26,6 +26,8 @@ export const submitHandler = (e: Event, element: HTMLElement | null) => {
 			{}
 		);
 
-		console.log(obj);
+		return obj;
 	}
+
+	return null;
 };

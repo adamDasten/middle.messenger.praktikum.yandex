@@ -5,17 +5,12 @@ export const Template = `
 
     </div>
     <div class="top-dialog__user-name">
-      {{username}}
+      {{{username}}}
     </div>
   </div>
-  <button class="top-dialog__options">
-    <img src={{optionsSvg}} alt="Опции">
-  </button>
+  {{{ options }}}
 </div>
   <div class="dialog-chat">
-  <div class="dialog-chat__date">
-    19 июня
-  </div>
   {{{ messages }}}
 </div>
 {{{ form }}}

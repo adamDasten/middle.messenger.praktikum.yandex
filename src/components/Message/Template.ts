@@ -1,12 +1,9 @@
 export const Template = `
   <div class="message {{your}}">
     <div class="message-text">
-      {{message}}
+      {{content}}
     </div>
-    <div class="message-time {{your}}">
-      {{#if your}}
-        <img src={{read}} alt="Прочитано">
-      {{/if}}
+    <div class="message-time">
       {{time}}
     </div>
   </div>

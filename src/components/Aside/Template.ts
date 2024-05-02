@@ -2,9 +2,7 @@ export const Template = `
 
 <div class="aside-profile">
   <div class="to-profile-wrapper">
-    <a class="to-profile" href="/data">
-      Профиль <img src={{ arrowImg }} alt="Стрелка к профилю">
-    </a>
+    {{{ toProfile }}}
   </div>
 </div>
 <div class="aside-search">
@@ -13,10 +11,11 @@ export const Template = `
     <img src={{searchSvg}} alt="Лупа">
   </div>
 </div>
+<div class="aside-add">
+  {{{ addChat }}}
+</div>
 <div class="aside-chat">
-  <div class="chat-items">
-    {{{ items }}}
-  </div>
+  {{{ chatItems }}}
 </div>
 
 `;

@@ -15,11 +15,11 @@ interface IProps {
 	settings?: { withInternalID: string };
 }
 
-interface IPropsAndStubs extends IProps {
+export interface IPropsAndStubs extends IProps {
 	[key: string]: unknown;
 }
 
-export default abstract class Block<T extends object> {
+export default class Block<T extends object = object> {
 	static EVENTS = {
 		INIT: "init",
 		FLOW_CDM: "flow:component-did-mount",
@@ -252,13 +252,10 @@ export default abstract class Block<T extends object> {
 		return true;
 	}
 
-	public setProps(newProps: Record<string, T>) {
+	public setProps(newProps: Record<string, unknown>) {
 		if (!newProps) {
 			return;
 		}
-
-		this.setUpdate = false;
-		const oldValue = { ...this.props };
 
 		const { children, props, lists } = this._getChildren(newProps);
 
@@ -273,11 +270,6 @@ export default abstract class Block<T extends object> {
 		if (Object.values(props).length) {
 			Object.assign(this.props, props);
 		}
-
-		if (this.setUpdate) {
-			this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
-			this.setUpdate = false;
-		}
 	}
 
 	private makePropsProxy(props: object): object {
@@ -288,11 +280,11 @@ export default abstract class Block<T extends object> {
 			},
 			set: (target: Record<string, unknown>, prop: string, value: unknown) => {
 				if (target[prop] !== value) {
-					const newTarget = { ...target, [prop]: value };
-					this.setUpdate = true;
-					return Reflect.set(newTarget, prop, value);
+					const old = target[prop];
+					target[prop] = value;
+					this.eventBus.emit(Block.EVENTS.FLOW_CDU, old, value);
 				}
-				return false;
+				return true;
 			},
 			deleteProperty() {
 				throw new Error("No access");
@@ -305,7 +297,7 @@ export default abstract class Block<T extends object> {
 	}
 
 	public show() {
-		this.getContent().style.display = "block";
+		this.getContent().style.display = "flex";
 	}
 
 	public hide() {

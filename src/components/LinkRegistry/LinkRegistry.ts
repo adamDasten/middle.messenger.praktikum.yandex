@@ -5,17 +5,26 @@ import Block from "../../core/Block";
 interface IProps {
 	linkName: string;
 	events?: {
-		onClick: (e: EventTarget) => void;
+		click: () => void;
 	};
 	attr: {
-		href: string;
+		href?: string;
 		class: string;
 	};
 }
 
 export default class LinkRegistry extends Block<IProps> {
 	constructor(props: IProps) {
-		super("a", props);
+		super("a", {
+			...props,
+			events: {
+				...props.events,
+				click: (e: Event) => {
+					e.preventDefault();
+					props.events?.click();
+				},
+			},
+		});
 	}
 
 	render() {

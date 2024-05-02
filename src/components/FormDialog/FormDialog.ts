@@ -1,3 +1,4 @@
+import MessageController from "../../controllers/MessageController";
 import Block from "../../core/Block";
 import { submitHandler } from "../../utils/submitHandler";
 import DialogInput from "../DialogInput/DialogInput";
@@ -19,7 +20,12 @@ export default class FormDialog extends Block<IProps> {
 			},
 			events: {
 				submit: (e: Event) => {
-					submitHandler(e, this.element);
+					const data = submitHandler(e, this.element);
+					if (!data) return;
+					MessageController.sendMessage(data.message);
+					const input = this.element?.querySelector("input");
+					if (!input) return;
+					input.value = "";
 				},
 			},
 		});

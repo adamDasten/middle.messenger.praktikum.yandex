@@ -1,6 +1,8 @@
 import { Template } from "./Template";
 import "./ErrorTemplate.scss";
 import Block from "../../../../core/Block.js";
+import Router from "../../../../core/Router";
+import { Path } from "../../../../consts/routes";
 
 interface IProps {
 	errorType: string;
@@ -16,6 +18,12 @@ export default class ErrorTemplate extends Block<IProps> {
 			attr: {
 				class: "error-template",
 			},
+		});
+
+		const backButton = this.element?.querySelector(".error-content__back");
+		backButton?.addEventListener("click", (e) => {
+			e.preventDefault();
+			Router.go(Path.CHATS);
 		});
 	}
 
