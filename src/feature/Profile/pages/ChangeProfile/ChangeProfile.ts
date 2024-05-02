@@ -17,6 +17,7 @@ import {
 	withSecondName,
 } from "../../../../services/connect";
 import RowData from "../../../../components/RowData";
+import InputAvatar from "../../../../components/InputAvatar";
 
 const userData = Store.getState()?.user as ProfileResponseData | undefined;
 
@@ -100,6 +101,7 @@ const AboutConnected = withAvatar(About);
 
 const about = new AboutConnected({
 	avatar: state?.avatar ?? profileSvg,
+	inputAvatar: new InputAvatar({}),
 });
 
 const profileForm = new ProfileForm({

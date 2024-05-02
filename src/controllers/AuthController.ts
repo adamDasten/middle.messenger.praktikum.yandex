@@ -74,6 +74,8 @@ class AuthController {
 
 			await this.getUser();
 
+			await ChatController.getChats();
+
 			// очищаем форму
 			(e.target as HTMLFormElement).reset();
 

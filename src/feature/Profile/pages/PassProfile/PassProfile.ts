@@ -9,6 +9,7 @@ import ProfileForm from "../../../../components/ProfileForm";
 import { withAvatar } from "../../../../services/connect";
 import Store from "../../../../services/Store";
 import { ProfileResponseData } from "../../../../api/types";
+import InputAvatar from "../../../../components/InputAvatar";
 
 const fields = [
 	new RowData({
@@ -53,6 +54,7 @@ const state = Store.getState().user as ProfileResponseData | undefined;
 
 const about = new AboutConnected({
 	avatar: state?.avatar ?? profileSvg,
+	inputAvatar: new InputAvatar({}),
 });
 
 const profileForm = new ProfileForm({

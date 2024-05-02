@@ -20,6 +20,7 @@ import { ProfileResponseData } from "../../../../api/types";
 import profileSvg from "../../../../../static/profile_placeholder.svg";
 import RowData from "../../../../components/RowData";
 import MessageController from "../../../../controllers/MessageController";
+import InputAvatar from "../../../../components/InputAvatar";
 
 const AboutConnected = withAvatarAndName(About);
 
@@ -28,6 +29,7 @@ const state = Store.getState().user as ProfileResponseData | undefined;
 const about = new AboutConnected({
 	name: state?.first_name,
 	avatar: state?.avatar ?? profileSvg,
+	inputAvatar: new InputAvatar({}),
 });
 
 const FirstNameField = withName(ProfileInput);
