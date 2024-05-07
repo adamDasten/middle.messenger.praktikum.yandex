@@ -7,6 +7,5 @@ export default function renderDOM(block: Component<object>) {
 		throw new Error("Нет корневого элемента!");
 	}
 
-	root.innerHTML = "";
 	root.appendChild(block.getContent());
 }

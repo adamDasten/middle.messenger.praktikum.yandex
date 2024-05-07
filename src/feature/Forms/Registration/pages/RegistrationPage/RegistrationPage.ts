@@ -10,6 +10,8 @@ import { IAuthPage } from "../../../Login/pages/LoginPage/LoginPage";
 import LoginForm from "../../../../../components/AuthForm";
 import InputField from "../../../../../components/InputField";
 import LoginInput from "../../../../../components/LoginInput";
+import Router from "../../../../../core/Router";
+import { Path } from "../../../../../consts/routes";
 
 const inputs = [
 	new InputField({
@@ -108,6 +110,11 @@ const actionHelp = new LinkRegistry({
 		class: "link-registry",
 		href: "/",
 	},
+	events: {
+		click: () => {
+			Router.go(Path.MAIN);
+		},
+	},
 });
 
 const title = new LoginLabel({
@@ -122,6 +129,7 @@ const form = new LoginForm({
 	actionHelp,
 	fields,
 	title,
+	eventType: "register",
 	attr: {
 		class: "main-content",
 	},

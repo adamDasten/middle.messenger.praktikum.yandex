@@ -8,7 +8,7 @@ export const Template = `
     </div>
   </div>
   <div class="template-page__backs">
-    <a href="/">
+    <a href="#">
       <img src={{ imgSrc }} alt="Назад">
     </a>
   </div>

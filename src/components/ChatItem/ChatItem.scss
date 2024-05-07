@@ -4,6 +4,9 @@
 	display: flex;
 	padding: 12px 10px;
 	border-top: 1px solid $main-border-color;
+	&-active {
+		background-color: #ccc;
+	}
 	cursor: pointer;
 	&:hover {
 		background-color: rgba($main-orange, 0.2);

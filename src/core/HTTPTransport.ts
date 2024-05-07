@@ -1,3 +1,6 @@
+import { OptionsToApi } from "../api/types";
+import { BASE_URL } from "../consts/consts";
+
 enum METHODS {
 	GET = "GET",
 	POST = "POST",
@@ -5,12 +8,14 @@ enum METHODS {
 	PUT = "PUT",
 }
 
-type Options = {
-	headers: Record<string, string>;
-	timeout: number;
+export type Options = {
+	headers?: Record<string, string>;
+	timeout?: number;
 	method: METHODS;
-	data: object;
+	payload: unknown;
 };
+
+type HTTPMethod = (url: string, options?: OptionsToApi) => Promise<XMLHttpRequest>;
 
 /**
  * Функцию реализовывать здесь необязательно, но может помочь не плодить логику у GET-метода
@@ -37,8 +42,14 @@ function checkIfNeedQueries<T>(url: string, method: METHODS, data: T) {
 	return url;
 }
 
-export class HTTPTransport {
-	get = (url: string, options = {} as Options) => {
+class HTTPTransport {
+	url: string;
+
+	constructor(url: string) {
+		this.url = url;
+	}
+
+	get: HTTPMethod = (url, options = {} as OptionsToApi) => {
 		return this.request(
 			url,
 			{ ...options, method: METHODS.GET },
@@ -47,7 +58,7 @@ export class HTTPTransport {
 	};
 
 	// PUT, POST, DELETE
-	put = (url: string, options = {} as Options) => {
+	put: HTTPMethod = (url, options = {} as OptionsToApi) => {
 		return this.request(
 			url,
 			{ ...options, method: METHODS.PUT },
@@ -55,7 +66,7 @@ export class HTTPTransport {
 		);
 	};
 
-	post = (url: string, options = {} as Options) => {
+	post: HTTPMethod = (url, options = {} as OptionsToApi) => {
 		return this.request(
 			url,
 			{ ...options, method: METHODS.POST },
@@ -63,7 +74,7 @@ export class HTTPTransport {
 		);
 	};
 
-	delete = (url: string, options = {} as Options) => {
+	delete: HTTPMethod = (url, options = {} as OptionsToApi) => {
 		return this.request(
 			url,
 			{ ...options, method: METHODS.DELETE },
@@ -71,8 +82,12 @@ export class HTTPTransport {
 		);
 	};
 
-	request = (url: string, options: Options, timeout = 5000) => {
-		const { method, data, headers = {} } = options;
+	request = (
+		url: string,
+		options: Options,
+		timeout = 5000
+	): Promise<XMLHttpRequest> => {
+		const { method, payload, headers = {} } = options;
 
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -81,24 +96,35 @@ export class HTTPTransport {
 				xhr.setRequestHeader(key, headers[key]);
 			});
 
-			const newUrl = checkIfNeedQueries(url, method, data);
+			const newUrl = checkIfNeedQueries(this.url + url, method, payload);
 			xhr.open(method, newUrl);
 
 			xhr.timeout = timeout;
-			xhr.onerror = reject;
+			xhr.onerror = () => {
+				reject();
+			};
 
 			xhr.onload = () => {
-				resolve(xhr);
+				if (xhr.status >= 200 && xhr.status < 400) resolve(xhr);
+				else {
+					reject(xhr.responseText);
+				}
 			};
 
 			xhr.ontimeout = reject;
+			xhr.withCredentials = true;
 
-			if (method === METHODS.GET || !data) {
+			if (method === METHODS.GET || !payload) {
 				xhr.send();
 				return;
+			} else if (payload instanceof FormData) {
+				xhr.send(payload);
+			} else {
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.send(JSON.stringify(payload));
 			}
-
-			xhr.send(JSON.stringify(data));
 		});
 	};
 }
+
+export default new HTTPTransport(BASE_URL);

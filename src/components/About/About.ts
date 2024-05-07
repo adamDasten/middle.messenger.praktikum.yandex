@@ -1,10 +1,13 @@
 import { Template } from "./Template";
 import "./About.scss";
 import Block from "../../core/Block";
+import InputAvatar from "../InputAvatar/InputAvatar";
 
 interface IProps {
-	pathImg: string;
+	avatar: string;
 	name?: string;
+	attr?: object;
+	inputAvatar: InputAvatar;
 }
 
 export default class About extends Block<IProps> {
@@ -12,6 +15,7 @@ export default class About extends Block<IProps> {
 		super("div", {
 			...props,
 			attr: {
+				...props?.attr,
 				class: "about",
 			},
 		});

@@ -5,11 +5,12 @@ import RowData from "../RowData";
 import Button from "../Button";
 import ActionBtn from "../ActionBtn";
 import { submitHandler } from "../../utils/submitHandler";
+import UserController from "../../controllers/UserController";
 
 interface IProps {
 	fields: RowData[];
 	actions: Button[] | ActionBtn[];
-	page: string;
+	page?: "changePassword" | "changeProfile";
 }
 
 export default class ProfileForm extends Block<IProps> {
@@ -21,7 +22,9 @@ export default class ProfileForm extends Block<IProps> {
 			},
 			events: {
 				submit: (e: Event) => {
-					submitHandler(e, this.element);
+					const data = submitHandler(e, this.element);
+					if (!props.page) return;
+					UserController[props.page](data);
 				},
 			},
 		});

@@ -8,6 +8,11 @@
 	border-right: 1px solid $main-border-color;
 	display: flex;
 	flex-direction: column;
+
+	&-add {
+		margin: 0 10px;
+		margin-bottom: 5px;
+	}
 	&-profile {
 		margin-bottom: 23px;
 	}

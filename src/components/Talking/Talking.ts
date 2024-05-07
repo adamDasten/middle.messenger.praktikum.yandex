@@ -3,12 +3,14 @@ import "./Talking.scss";
 import Block from "../../core/Block.js";
 import FormDialog from "../FormDialog";
 import Message from "../Message";
+import ChatName from "../ChatName";
+import OptionsDiv from "../Options/Options";
 
 interface IProps {
-	username: string;
-	optionsSvg: string;
+	username: ChatName;
 	messages: Message[];
 	form: FormDialog;
+	options: OptionsDiv;
 }
 
 export default class Talking extends Block<IProps> {
@@ -22,6 +24,7 @@ export default class Talking extends Block<IProps> {
 	}
 
 	render() {
-		return this.compile(Template, this.props);
+		const elementLayout = this.compile(Template, this.props);
+		return elementLayout;
 	}
 }
