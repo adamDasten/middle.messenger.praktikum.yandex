@@ -2,22 +2,18 @@
   "name": "middle.messenger.practicum.yandex",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite --open",
     "start": "npm run prebuild && vite build && node ./server.js",
     "build": "npm run prebuild && vite build",
     "eslint:fix": "eslint . --fix",
     "prebuild": "tsc --noEmit",
-    "eslint": "eslint .",
+    "eslint": "eslint --ext .ts,.js src",
     "stylelint": "stylelint **/*.scss",
     "test": "mocha --es-module-specifier-resolution=node",
     "prepare": "husky install",
     "pre-commit": "npm run stylelint && npm run eslint && npm run test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run stylelint && npm run eslint && npm run test"
-    }
   },
   "devDependencies": {
     "@types/chai": "^4.3.16",
