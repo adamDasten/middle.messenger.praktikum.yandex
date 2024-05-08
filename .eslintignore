@@ -4,4 +4,5 @@
 /node_modules 
 server.js
 vite.config.js
+mochaSetup.js
 vite-plugin-handlebars.precompile.js

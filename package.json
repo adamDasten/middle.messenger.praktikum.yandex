@@ -9,20 +9,40 @@
     "eslint:fix": "eslint . --fix",
     "prebuild": "tsc --noEmit",
     "eslint": "eslint .",
-    "stylelint": "stylelint **/*.scss"
+    "stylelint": "stylelint **/*.scss",
+    "test": "mocha --es-module-specifier-resolution=node",
+    "prepare": "husky install",
+    "pre-commit": "npm run stylelint && npm run eslint && npm run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run stylelint && npm run eslint && npm run test"
+    }
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/jsdom": "^21.1.6",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.12.11",
+    "@types/sinon": "^17.0.3",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "chai": "^5.1.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
+    "esm": "^3.2.25",
     "express": "^4.18.2",
     "handlebars": "^4.7.7",
+    "husky": "^9.0.11",
+    "jsdom": "^24.0.0",
+    "mocha": "^10.4.0",
     "sass": "^1.63.6",
+    "sinon": "^17.0.2",
     "stylelint": "^16.2.1",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-scss": "^6.2.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "vite": "^4.4.0",
     "vite-plugin-checker": "^0.6.4"
