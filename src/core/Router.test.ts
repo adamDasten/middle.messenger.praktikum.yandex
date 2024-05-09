@@ -33,7 +33,9 @@ describe('Router test', () => {
   let TestRouter = Router
 
   beforeEach(() => {
-    TestRouter.use('/test' as Path, block1).use('/test2' as Path, block2)
+    TestRouter.use('/test' as Path, block1)
+      .use('/test2' as Path, block2)
+      .start()
   })
 
   it('should add path to router', () => {
@@ -42,7 +44,6 @@ describe('Router test', () => {
 
   it('should go to called', () => {
     const stub = Sinon.stub(window.history, 'pushState')
-    TestRouter.start()
     TestRouter.go('/test2')
     expect(stub.calledWith({}, '', '/test2')).to.be.true
     stub.restore()
