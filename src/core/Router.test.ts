@@ -43,8 +43,8 @@ describe('Router test', () => {
   it('should go to called', () => {
     const stub = Sinon.stub(window.history, 'pushState')
     TestRouter.start()
-    TestRouter.go('/test')
-    expect(stub.calledWith({}, '', '/test')).to.be.true
+    TestRouter.go('/test2')
+    expect(stub.calledWith({}, '', '/test2')).to.be.true
     stub.restore()
   })
 })
