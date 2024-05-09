@@ -27,4 +27,26 @@ describe('HTTPTransport', () => {
     const [request] = requests
     expect(request.method).to.eq('GET')
   })
+
+  it('should send post req', () => {
+    httpClient.post('/', {
+      payload: 'test'
+    })
+    const [request] = requests
+    expect(request.method).to.eq('POST')
+  })
+
+  it('should send put req', () => {
+    httpClient.put('/', {
+      payload: 'test'
+    })
+    const [request] = requests
+    expect(request.method).to.eq('PUT')
+  })
+
+  it('should send delete req', () => {
+    httpClient.delete('/chats')
+    const [request] = requests
+    expect(request.method).to.eq('DELETE')
+  })
 })
