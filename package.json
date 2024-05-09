@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --open",
-    "start": "npm run prebuild && vite build && node ./server.js",
+    "start": "npm run prebuild && vite build && node ./server.cjs",
     "build": "npm run prebuild && vite build",
     "eslint:fix": "eslint . --fix",
     "prebuild": "tsc --noEmit",

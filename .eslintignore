@@ -2,7 +2,7 @@
 /dist
 **/*.min.js
 /node_modules 
-server.js
+server.cjs
 vite.config.js
 mochaSetup.js
 vite-plugin-handlebars.precompile.js
